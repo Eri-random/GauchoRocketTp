@@ -38,7 +38,11 @@ class UsuarioController {
 
             if($user["id_rol"] == 1){
                 $_SESSION["esAdmin"] = true;
-                $data["esAdmin"] = $_SESSION["esAdmin"];   
+                $data["esAdmin"] = $_SESSION["esAdmin"]; 
+                $data["fechas"] = $this->vuelosModel->getFechas();
+                $data["origenes"] = $this->vuelosModel->getOrigen();
+                $data["destinos"] = $this->vuelosModel->getDestino();  
+                $data["recorrido"] = $this->vuelosModel->getRecorrido();
                 $data["viajes"] = $this->vuelosModel->getVuelos();
                 echo $this->printer->render("homeView.html", $data);
                 
@@ -48,12 +52,20 @@ class UsuarioController {
                 $_SESSION["esClient"] = true;
                 $data["esClient"] = $_SESSION["esClient"];  
                 $data["viajes"] = $this->vuelosModel->getVuelos();
+                $data["fechas"] = $this->vuelosModel->getFechas();
+                $data["origenes"] = $this->vuelosModel->getOrigen();
+                $data["destinos"] = $this->vuelosModel->getDestino(); 
+                $data["recorrido"] = $this->vuelosModel->getRecorrido(); 
                 echo $this->printer->render("homeView.html", $data);
                 exit();
             }
             else{
                 $data["esNada"] = "esNada";   
                 $data["viajes"] = $this->vuelosModel->getVuelos();
+                $data["fechas"] = $this->vuelosModel->getFechas();
+                $data["origenes"] = $this->vuelosModel->getOrigen();
+                $data["destinos"] = $this->vuelosModel->getDestino();  
+                $data["recorrido"] = $this->vuelosModel->getRecorrido();
                 echo $this->printer->render("homeView.html", $data);
            
                 exit();
