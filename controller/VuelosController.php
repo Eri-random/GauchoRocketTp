@@ -13,26 +13,48 @@ class VuelosController {
     }
 
     public function buscarVuelos (){
-        $origen = $_GET["origen"];
-        $destino = $_GET["destino"];
-        $fecha = $_GET["fecha"];
+        if (isset($_GET["origen"]) ) {
+            $origen = $_GET["origen"];
+        }else {
+            $origen = "";
+        }if( isset($_GET["destino"]) ){
+            $destino = $_GET["destino"];
+        }else{
+            $destino = "";
+        } if( isset($_GET["fecha"]) ){
+            $fecha = $_GET["fecha"];
+           
+        }else{
+            $fecha = "";
+            
+        }
 
-
+    
         if(!isset($_SESSION["logueado"]) || (isset($_SESSION["logueado"]) && !$_SESSION["logueado"] )){
             
         if($origen == "" && $destino == "" && $fecha == ""){
+            
             $data["esNada"] = "esNada";
             $data["vacio"] = true;//Esta vacio Cartelito
             $data["viajes"] = $this->vuelosModel->getVuelos();
             $data["fechas"] = $this->vuelosModel->getFechas();
             $data["origenes"] = $this->vuelosModel->getOrigen();
-            $data["destinos"] = $this->vuelosModel->getDestino();  
+            $data["destinos"] = $this->vuelosModel->getDestino();
+
 
                
                 
             echo $this->printer->render("HomeView.html", $data);
         }else{
+
+            $data["origen_buscado"] = $origen;
+            $data["destino_buscado"] = $destino;
+            $data["fecha_buscada"] = $fecha;
+
+
             $data["esNada"] = "esNada";
+
+
             $data["fechas"] = $this->vuelosModel->getFechas();
             $data["origenes"] = $this->vuelosModel->getOrigen();
             $data["destinos"] = $this->vuelosModel->getDestino();
@@ -58,6 +80,11 @@ class VuelosController {
             $data["recorrido"] = $this->vuelosModel->getRecorrido();
             echo $this->printer->render("HomeView.html", $data);
         }else{
+            
+            $data["origen_buscado"] = $origen;
+            $data["destino_buscado"] = $destino;
+            $data["fecha_buscada"] = $fecha;
+
             $data["fechas"] = $this->vuelosModel->getFechas();
             $data["origenes"] = $this->vuelosModel->getOrigen();
             $data["destinos"] = $this->vuelosModel->getDestino();
@@ -82,6 +109,10 @@ class VuelosController {
             $data["recorrido"] = $this->vuelosModel->getRecorrido();
             echo $this->printer->render("HomeView.html", $data);
         }else{
+            $data["origen_buscado"] = $origen;
+            $data["destino_buscado"] = $destino;
+            $data["fecha_buscada"] = $fecha;
+
             $data["fechas"] = $this->vuelosModel->getFechas();
             $data["origenes"] = $this->vuelosModel->getOrigen();
             $data["destinos"] = $this->vuelosModel->getDestino();

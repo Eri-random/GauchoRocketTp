@@ -23,6 +23,17 @@
             <form action="/vuelos/buscarVuelos" method="GET">
                 <h5 class="fw-bold">Vuelos</h5>
 
+                     <div class="alert alert-danger" role="alert">
+
+                    Origen: {{ origen_buscado}} <br>  
+                    Destino: {{destino_buscado}}<br>
+                    FECHA: {{fecha_buscada}}
+
+                     </div>
+
+
+
+
                 <input type="radio" name="tipo_vuelo" value="1" checked> Orbitales
                 <input type="radio" name="tipo_vuelo" value="2"> Entre Destinos
 
@@ -32,7 +43,7 @@
                         <select class="form-select" aria-label="Default select example" name="origen">
                             <option selected disabled>Origen</option>
                             {{#origenes}}
-                                <option selected="selected" value="{{origen}}">{{origen}}</option>
+                                <option value="{{origen}}" required>{{origen}}</option>
                             {{/origenes}}
                         </select>
                     </div>
@@ -42,7 +53,7 @@
                         <select class="form-select" aria-label="Default select example" name="destino">
                             <option selected disabled>Destino</option>
                             {{#destinos}}
-                                <option selected="selected" value="{{destino}}">{{destino}}</option>
+                                <option  value="{{destino}}" required>{{destino}}</option>
                             {{/destinos}}
                         </select>
                     </div>
@@ -53,7 +64,7 @@
                         <select class="form-select" aria-label="Default select example" name="fecha">
                             <option selected disabled>Fecha</option>
                             {{#fechas}}
-                                <option selected="selected" value="{{fecha}}">{{fecha}}</option>
+                                <option  value="{{fecha}}" required>{{fecha}}</option>
                             {{/fechas}}
                         </select>
                     </div>
@@ -71,7 +82,7 @@
                     <th scope="col">FECHA PARTIDA</th>
                     <th scope="col">EQUIPO</th>
                     <th scope="col">CIRCUITO</th>
-                    <th scope="col">RECORRIDO</th>
+                    
 
                 </tr>
             </thead>
@@ -85,9 +96,9 @@
                         <td>{{fecha_partida}}</td>
                         <td>{{equipo}}</td>
                         <td>{{circuito}}</td>
-                        {{#recorrido}}
-                        <td>{{destino}}</td>
-                         {{/recorrido}}   
+
+                        
+
                         {{#esClient}}
                         <td><input type="submit" class="btn btn-primary" value="Reservar">
                         {{/esClient}}

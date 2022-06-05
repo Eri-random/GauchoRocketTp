@@ -25,8 +25,8 @@ class UsuarioModel {
 
         $userFound = $this->getUser($email, $password)[0];
 
-        //if (sizeof($userFound) === 0) {
-             if(!isset($userFound)){
+        if (sizeof($userFound) === null) {
+            
             throw new EntityNotFoundException("El usuario no existe");
         }
 
@@ -57,7 +57,8 @@ class UsuarioModel {
     }
 
     public function getUser($email, $password) {
-        return $this->database->query("SELECT * FROM usuario where email = '$email' AND contrasenia = '$password'");
+
+        return $this->database->query("SELECT * FROM usuario where email = '$email' AND contrasenia = '$password' and activo = true");
     }
 
     public function getUsuarios() {
