@@ -1,0 +1,36 @@
+    {{>header}}
+    {{>menu}}
+    <h3>CENTROS MEDICOS</h3>
+    <h5>ELIGA UN CENTRO</h5>
+{{#usuario}}
+    <h6>Hola: {{usuario}}</h6>
+{{/usuario}}
+    <div class="container">
+        <div class="card-group">
+    {{#centros}}
+    
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+    
+        <img class="card-img-top" src="/public/{{nombre}}.jpeg" alt="Card image cap" width="250px" height="250px" >
+        <div class="card-body">
+          <h5 class="card-title">{{nombre}}</h5>
+          <p class="card-text">El mejor centro Medico de la region, con atencion personalizada y seguridad interplanetaria, Darth Vader lo recomienda</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Turnos Disponibles: {{turnos_restantes}}</li>
+         
+        </ul>
+        <div class="card-body">
+        <a href="/Chequeo/chequeoMedico&idCentro={{id}}" class="btn btn-success">Realizar Chequeo</a>
+          
+        </div>
+    
+            </div>
+        </div>
+  
+{{/centros}}
+    </div>
+</div>
+
+    {{>footer}}

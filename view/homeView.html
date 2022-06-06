@@ -7,6 +7,32 @@
        {{mensaje}}
     </div>
    {{/mensaje}}
+  
+   
+  
+
+  
+<div>
+   {{^chequeo}}
+   <div>
+    {{#esClient}}
+    <a  class="btn btn-primary btn-lg " role="button" aria-disabled="true" href="/Chequeo">CHEQUEO MEDICO</a>
+    {{/esClient}}
+   
+    </div>
+    
+    {{/chequeo}}
+<div>
+    {{#chequeo}}
+    <div class="alert alert-success">CHEQUEO MEDICO, SU RESULTADO ES NIVEL: {{codigo}} </div>
+    {{/chequeo}}
+</div> 
+</div>
+  
+
+
+
+
 
     <p class="">
         We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing

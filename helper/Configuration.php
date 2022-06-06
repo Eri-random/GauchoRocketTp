@@ -7,12 +7,12 @@ include_once ("helper/Navigation.php");
 include_once('controller/HomeController.php');
 include_once('controller/UsuarioController.php');
 include_once('controller/VuelosController.php');
-
+include_once('controller/ChequeoController.php');
 
 
 include_once('model/UsuarioModel.php');
 include_once('model/VuelosModel.php');
-
+include_once('model/CentroMedicoModel.php');
 
 require_once('third-party/mustache/src/Mustache/Autoloader.php');
 
@@ -29,13 +29,20 @@ class Configuration {
         return new VuelosModel($this->getDatabase());
     }
 
+    public function getCentroMedicoModel(){
+        return new CentroMedicoModel($this->getDatabase());
+    }
+    public function getChequeoController(){
+        return new ChequeoController($this->getPrinter(),$this->getCentroMedicoModel());
+    }
+
 
     public function getHomeController() {
-        return new HomeController($this->getPrinter(), $this->getVuelosModel());
+        return new HomeController($this->getPrinter(), $this->getVuelosModel(), $this->getCentroMedicoModel());
     }
 
     public function getUsuarioController() {
-        return new UsuarioController($this->getUsuarioModel(), $this->getPrinter(), new UserValidator(), $this->getVuelosModel());
+        return new UsuarioController($this->getUsuarioModel(), $this->getPrinter(), new UserValidator(), $this->getVuelosModel(), $this->getCentroMedicoModel());
 
     }
 

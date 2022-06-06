@@ -4,14 +4,16 @@ class UsuarioController {
     private $printer;
     private $usuarioModel;
     private $userValidator;
+    private $centroMedicoModel;
 
     private $vuelosModel;
 
-    public function __construct($usuarioModel, $printer, $userValidator, $vuelosModel) {
+    public function __construct($usuarioModel, $printer, $userValidator, $vuelosModel, $centroMedicoModel) {
         $this->printer = $printer;
         $this->usuarioModel = $usuarioModel;
         $this->userValidator = $userValidator;
         $this->vuelosModel = $vuelosModel;
+        $this->centroMedicoModel = $centroMedicoModel;
 
     }
 
@@ -56,6 +58,7 @@ class UsuarioController {
                 $data["origenes"] = $this->vuelosModel->getOrigen();
                 $data["destinos"] = $this->vuelosModel->getDestino(); 
                 $data["recorrido"] = $this->vuelosModel->getRecorrido(); 
+                $data["chequeo"] = $this->centroMedicoModel->getChequeoById($_SESSION["id"]);
                 echo $this->printer->render("homeView.html", $data);
                 exit();
             }
