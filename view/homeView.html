@@ -16,7 +16,9 @@
    {{^chequeo}}
    <div>
     {{#esClient}}
+    <div class="alert alert-warning">Antes de Elegir viaje realizarse el: 
     <a  class="btn btn-primary btn-lg " role="button" aria-disabled="true" href="/Chequeo">CHEQUEO MEDICO</a>
+</div>
     {{/esClient}}
    
     </div>
@@ -24,7 +26,7 @@
     {{/chequeo}}
 <div>
     {{#chequeo}}
-    <div class="alert alert-success">CHEQUEO MEDICO, SU RESULTADO ES NIVEL: {{codigo}} </div>
+    <div class="alert alert-success">HOLA {{nombre}}, NIVEL DE VUELO: {{codigo}} </div>
     {{/chequeo}}
 </div> 
 </div>

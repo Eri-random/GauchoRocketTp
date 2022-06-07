@@ -39,6 +39,7 @@ class HomeController{
         }else if(isset($_SESSION["esClient"])){
             
             $data["esClient"] = $_SESSION["esClient"];
+            $data ["nombre"] = $_SESSION["nombre"];
             $data["viajes"] = $this->vuelosModel->getVuelos();
             $data["fechas"] = $this->vuelosModel->getFechas();
             $data["origenes"] = $this->vuelosModel->getOrigen();
