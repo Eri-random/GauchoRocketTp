@@ -70,12 +70,6 @@ class CentroMedicoModel {
     }
 
 
-/*
-    public function setearTurnos($id_centro){
-       if($this->fechaHoy() != date("d-m-Y")){
-       }
-    }
-*/
     public function fechaHoy(){
             $fecha_hoy = date("d-m-Y");
             return $fecha_hoy;
@@ -99,13 +93,7 @@ class CentroMedicoModel {
         }
 
     }
-    /*
-    public function getTipoDeEquipoVuelo($id){
 
-        $sql = "SELECT te.id as idEquipo FROM tipo_equipo te join vuelo v on te.id = v.id_tipo_equipo WHERE v.id = '$id'";
-        return $this->database->query($sql);
-    }
-    */
    
     public function chequeoTipoEquipo($id_user, $id_vuelo){
             $codigo= $this->getChequeoById($id_user); //devuelve un array
@@ -132,7 +120,6 @@ class CentroMedicoModel {
             }else{
                 return false;
             }
-            //return $valor;
     }
 
 

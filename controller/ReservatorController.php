@@ -2,15 +2,15 @@
 
 class ReservatorController {
     private $printer;
-    private $userModel;
+    private $vuelosModel;
     private $reservatorModel;
     private $centroMedicoModel;
     private $checkin;
 
-    public function __construct($printer, $reservatorModel, $userModel, $centroMedicoModel, $checkin) {
+    public function __construct($printer, $reservatorModel, $vuelosModel, $centroMedicoModel, $checkin) {
         $this->printer = $printer;
         $this->reservatorModel = $reservatorModel;
-        $this->userModel = $userModel;
+        $this->vuelosModel = $vuelosModel;
         $this->centroMedicoModel = $centroMedicoModel;
         $this->checkin = $checkin;
 
@@ -28,13 +28,17 @@ class ReservatorController {
             Navigation::redirectTo("/home");
         }
 
-
         $data["usuario"] = $_SESSION["nombre"];
         $id_user = $_SESSION["id"];
         $idVuelo = (int) $_GET["id_vuelo"];
 
-        $valor = $this->centroMedicoModel->chequeoTipoEquipo($id_user, $idVuelo);
+        $vuelo = $this->vuelosModel->getVueloById($idVuelo);
 
+        if (sizeof($vuelo) === 0) {
+            Navigation::redirectTo("/home");
+        }
+
+        $valor = $this->centroMedicoModel->chequeoTipoEquipo($id_user, $idVuelo);
 
         $data["NoPuedeViajar"] = $valor;
         $data["esClient"] = $_SESSION["esClient"];
@@ -119,6 +123,13 @@ class ReservatorController {
 
         $reserveId = $_GET["id_Reserva"];
         $reserva = $this->reservatorModel->getRerservaByReserve($reserveId);
+
+
+        if (sizeof($reserva) === 0) {
+            Navigation::redirectTo("/home");
+        }
+
+
         $exchangeRate = $_POST["cotizar"];
 
         $data["podra"] = $this->checkin->fechaDePartidaCheck($reserveId);

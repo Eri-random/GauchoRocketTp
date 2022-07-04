@@ -31,7 +31,17 @@ class CheckinController {
                 $data["nombre"] = $_SESSION["nombre"];
                 $data["id"] = $_SESSION["id"];
                 $id_reserva = $_GET["id_Reserva"];
-                $data["reserva"] = $this->reservator->getRerservaByReserve($id_reserva);
+
+                $reserva = $this->reservator->getRerservaByReserve($id_reserva);
+
+                if (sizeof($reserva) === 0) {
+                    Navigation::redirectTo("/home");
+                }
+        
+
+                $data["reserva"] = $reserva;
+
+
                 
                 $data["pago"] = $this->reservator->getPagoReserva($id_reserva);
 
