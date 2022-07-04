@@ -41,6 +41,12 @@
 
      <h3 class>Admin: {{nombre}}</h3>
 
+     {{#actualizado}}
+      {{#idModificado}}
+        <div class="alert alert-success">El vuelo {{.}} ha sido actualizado correctamente</div>
+      {{/idModificado}}
+    {{/actualizado}}
+
      {{>vuelosAdmin}}
 
 

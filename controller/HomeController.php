@@ -29,6 +29,18 @@ class HomeController {
        
     }
 
+    if($_SESSION["actualizado"]== true){
+        $data["actualizado"] = $_SESSION["actualizado"];
+        $data["idModificado"]=$_SESSION["idModificado"];
+
+        $data["lugares"] = $this->vuelosModel->getLugares();
+        
+        echo $this->printer->render("homeView.html", $data);
+    }
+
+        $_SESSION["actualizado"]= false;
+
+
         $data["lugares"] = $this->vuelosModel->getLugares();
         
         echo $this->printer->render("homeView.html", $data);

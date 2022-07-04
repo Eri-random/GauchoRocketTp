@@ -16,31 +16,29 @@
                 <h5 class="fw-bold">Vuelos</h5>
 
                 <div class="mt-2 d-flex gap-2">
-                    <div>
-                        <label for="exampleDataListOrigen" class="form-label">Origen</label>
-                        <input class="form-control" list="datalistOrigen" id="exampleDataListOrigen" name="origen"
-                            placeholder="Ingresa desde dónde">
-                        <datalist id="datalistOrigen">
+                    <div class="d-flex flex-column">
+                        <label class="form-label">Origen</label>
+                        <select name="origen">
+                            <option selected disabled>Ingresa desde dónde</option>
                             {{#lugares}}
-                            <option value="{{nombre}}">
-                                {{/lugares}}
-                        </datalist>
+                            <option value="{{nombre}}">{{nombre}}</option>
+                            {{/lugares}}
+                        </select>
                     </div>
 
-                    <div>
-                        <label for="exampleDataListDestino" class="form-label">Destino</label>
-                        <input class="form-control" list="datalistDestino" id="exampleDataListDestino" name="destino"
-                            placeholder="Ingresa hacia dónde">
-                        <datalist id="datalistDestino">
+                    <div class="d-flex flex-column">
+                        <label class="form-label">Destino</label>
+                        <select name="destino">
+                            <option selected disabled>Ingresa hacia dónde</option>
                             {{#lugares}}
-                            <option value="{{nombre}}">
-                                {{/lugares}}
-                        </datalist>
+                            <option value="{{nombre}}">{{nombre}}</option>
+                            {{/lugares}}
+                        </select>
                     </div>
 
                     <div>
                         <label class="form-label">Fecha</label>
-                        <input type="date" name="fecha" class="d-block h-50">
+                        <input type="date" name="fecha" class="d-block">
                     </div>
 
 

@@ -94,7 +94,7 @@ class UsuarioController {
             // presentacion
             $data["mensaje"] = "Ya puedes validar tu cuenta a traves de email";
 
-            echo $this->printer->render("HomeView.html");
+            echo $this->printer->render("HomeView.html",$data);
         } catch (ValidationException|EntityFoundException $exception) {
             $data["error"] = $exception->getMessage();
 
@@ -105,8 +105,9 @@ class UsuarioController {
     public function activar() {
         $email = $_GET["email"];
         $this->usuarioModel->activarUsuario($email);
+        $data["mensaje"]="Su cuenta ha sido validada correctamente";
 
-        echo $this->printer->render("HomeView.html");
+        echo $this->printer->render("HomeView.html",$data);
     }
 
 

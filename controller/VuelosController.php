@@ -30,6 +30,7 @@ class VuelosController {
         $origen = $_POST["origen"];
         $destino = $_POST["destino"];
         $fecha = $_POST["fecha"];
+
         
         if($origen == "" && $destino == "" && $fecha == ""){
             $data["vacio"] = true;//Esta vacio Cartelito
@@ -39,6 +40,8 @@ class VuelosController {
             $viajes = $this->filtrarBusqueda($origen,$destino,$fecha);
             if(empty($viajes) ){
                 $data["error"] = "No se encontro resultado";//No se encontro resultado cartelito
+                
+                $data["lugares"] = $this->vuelosModel->getLugares();
 
                 echo $this->printer->render("HomeView.html", $data);
 
@@ -233,7 +236,7 @@ class VuelosController {
 
         if($paradas != null){
 
-        $horarios = $this->vuelosModel->getTransitoCircuito1BA()[0];
+         $horarios = $this->vuelosModel->getTransitoCircuito1BA()[0];
 
         
         $string = implode(",",$horarios); 
@@ -328,12 +331,6 @@ class VuelosController {
         $cadena = (($dias>0)? $dias . " dias " : "" ). $hora . " horas ";
 
         return $cadena;
-    }
-
-    public function horaDeLlegadaPuntoOrigen($origen){
-
-
-
     }
 
 
@@ -481,6 +478,9 @@ public function modificarVuelo(){
 
     $this->vuelosModel->updateVuelo($id,$capacidad,$fecha_partida,$hora,$lugar_partida,$destino,$precio,$id_tipo_equipo,$id_tipo_viaje,$id_tipo_cabina);
 
+    $_SESSION["actualizado"]=true;
+    $_SESSION["idModificado"]=$id;
+    
     Navigation::redirectTo("/home");
 
 }
