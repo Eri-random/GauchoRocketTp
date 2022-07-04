@@ -46,7 +46,7 @@ class UsuarioController {
                 $_SESSION["id"] = $user["id"];
                 $_SESSION["nombre"] = $user["nombre"];
                 $data["esClient"] = true; 
-                $data["viajes"] = $this->vuelosModel->getVuelos();
+                $data["lugares"] = $this->vuelosModel->getLugares();
                 $data["chequeo"] = $this->centroMedicoModel->getChequeoById($_SESSION["id"]);
                 echo $this->printer->render("homeView.html", $data);
                 exit();
@@ -60,6 +60,7 @@ class UsuarioController {
                 $_SESSION["nombre"] = $user["nombre"];
                 
                 $data["viajes"] = $this->vuelosModel->getVuelos();
+                $data["lugares"] = $this->vuelosModel->getLugares();
                 echo $this->printer->render("homeView.html", $data);
             }
         
