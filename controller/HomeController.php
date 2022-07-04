@@ -18,15 +18,20 @@ class HomeController {
             $data["nombre"] = $_SESSION["nombre"];
             $data["id"] = $_SESSION["id"];
             $data["chequeo"] = $this->centroMedicoModel->getChequeoById($_SESSION["id"]);
-
-            
         }
+
     else if(isset($_SESSION["esAdmin"])){
         $data["esAdmin"] = true;
         $data["nombre"] = $_SESSION["nombre"];
         $data["id"] = $_SESSION["id"];
         $data["viajes"] = $this->vuelosModel->getVuelos();
        
+    }
+
+    if(!isset($_SESSION["actualizado"])){
+        $data["lugares"] = $this->vuelosModel->getLugares();
+
+        echo $this->printer->render("homeView.html", $data);
     }
 
     if($_SESSION["actualizado"]== true){
@@ -40,11 +45,10 @@ class HomeController {
 
         $_SESSION["actualizado"]= false;
 
-
         $data["lugares"] = $this->vuelosModel->getLugares();
         
         echo $this->printer->render("homeView.html", $data);
-    }
+     }
 }
     
 
