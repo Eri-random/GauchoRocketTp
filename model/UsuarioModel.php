@@ -94,7 +94,7 @@ class UsuarioModel {
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Bienvenido a Gaucho Rocket';
-        $mail->Body = 'Por favor ingrese al siguiente link para poder verificar su cuenta <a href="http://localhost/GauchoRocketTp/index.php?usuario/activar&email=' . $email . '">http://localhost/GauchoRocketTp/index.php?controller=usuario&method=activar&email=' . $email . '</a>';
+        $mail->Body = 'Por favor ingrese al siguiente link para poder verificar su cuenta <a href="http://localhost/usuario/activar&email=' . $email . '">http://localhost/usuario/activar&email=' . $email . '</a>';
         return $mail->send();
     }
 
